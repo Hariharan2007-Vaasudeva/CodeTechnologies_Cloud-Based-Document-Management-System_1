@@ -1,0 +1,18 @@
+docusphere/
+│
+├── client/
+│   ├── pages/
+│   │   ├── index.js
+│   │   ├── login.js
+│   │   └── dashboard.js
+│   │
+│   └── styles/
+│
+├── server/
+│   ├── server.js
+│   ├── routes/
+│   │   └── auth.js
+│   │
+│   └── db.js
+│
+└── README.md

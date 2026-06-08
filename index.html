@@ -175,4 +175,407 @@ footer{
 </footer>
 
 </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuSphere - Cloud Document Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #ec4899;
+            --bg-color: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-bg: rgba(255, 255, 255, 0.7);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background-color: #f1f5f9;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        /* Add a modern ambient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(79, 70, 229, 0.12), transparent 30%),
+                radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.12), transparent 30%);
+            z-index: -1;
+            animation: pulseBg 12s ease-in-out infinite alternate;
+        }
+        @keyframes pulseBg {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        /* Glassmorphism Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        nav a:hover {
+            color: var(--primary);
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        .btn-nav {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+            color: white !important;
+        }
+        
+        .btn-nav::after { display: none; }
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 200px 20px 120px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 10px rgba(79, 70, 229, 0.1);
+        }
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--text-main);
+            letter-spacing: -1.5px;
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 22px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 36px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #6366f1);
+            color: white;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.4);
+        }
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            color: var(--text-main);
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .btn-outline:hover {
+            border-color: rgba(79, 70, 229, 0.3);
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-3px);
+        }
+        /* Features Section */
+        .features {
+            padding: 80px 20px 120px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .section-header h2 {
+            font-size: 44px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        .section-header p {
+            font-size: 20px;
+            color: var(--text-muted);
+        }
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px 30px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 2;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.12);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .card:hover::before {
+            opacity: 1;
+        }
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 24px;
+            color: var(--primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card:hover .icon-box {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+        .card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+        .card p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        footer p {
+            font-size: 15px;
+        }
+        footer .heart {
+            color: var(--secondary);
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            nav {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 42px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        📁 <span>DocuSphere</span>
+    </div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#features">Features</a>
+        <a href="#">Pricing</a>
+        <a href="#">Login</a>
+        <a href="#" class="btn-nav">Register</a>
+    </nav>
+</header>
+<section class="hero">
+    <div class="badge">🚀 The Future of Work is Here</div>
+    <h1>Cloud-Based <br/><span>Document Management</span> System</h1>
+    <p>
+        Securely Store, Manage, Share and Collaborate on Documents Anytime, Anywhere. Experience the most intuitive workspace for your team.
+    </p>
+    <div class="btn-group">
+        <a href="#" class="btn btn-primary">Get Started for Free</a>
+        <a href="#features" class="btn btn-outline">Explore Features</a>
+    </div>
+</section>
+<section id="features" class="features">
+    <div class="section-header">
+        <h2>Everything you need to scale</h2>
+        <p>Powerful features designed to help your team work smarter and faster.</p>
+    </div>
+    <div class="card-container">
+        <div class="card">
+            <div class="icon-box">🔒</div>
+            <h3>Secure Storage</h3>
+            <p>Store files safely with military-grade end-to-end encryption. Your data remains yours, always.</p>
+        </div>
+        <div class="card">
+            <div class="icon-box">📂</div>
+            <h3>Version Control</h3>
+            <p>Never lose a change. Track all document versions easily and revert back to any point in time.</p>
+        </div>
+        <div class="card">
+            <div class="icon-box">👥</div>
+            <h3>Collaboration</h3>
+            <p>Work with your team in real-time. Add comments, suggest edits, and build together flawlessly.</p>
+        </div>
+        <div class="card">
+            <div class="icon-box">🔍</div>
+            <h3>Smart Search</h3>
+            <p>Find documents instantly using AI-powered tags and advanced full-text search capabilities.</p>
+        </div>
+        <div class="card">
+            <div class="icon-box">📊</div>
+            <h3>Audit Logs</h3>
+            <p>Monitor document activities securely. See exactly who viewed, edited, or shared your files.</p>
+        </div>
+        <div class="card">
+            <div class="icon-box">☁️</div>
+            <h3>Cloud Access</h3>
+            <p>Access files from anywhere, on any device. Seamless sync ensures you're always up to date.</p>
+        </div>
+    </div>
+</section>
+<footer>
+    <p>© 2026 DocuSphere | Developed with <span class="heart">❤</span> by Hari Haran</p>
+</footer>
+</body>
+</html>
 </html>
